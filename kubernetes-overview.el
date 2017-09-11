@@ -143,14 +143,13 @@
 
 
 ;; Pods
-
 (defun kubernetes-overview--pods-for-deployment (state deployment)
-  (-let* (((&alist 'spec (&alist 'selector (&alist 'matchLabels (&alist 'name selector-name)))) deployment)
+  (-let* ((name (kubernetes-state-resource-name deployment))
           ((&alist 'items pods) (kubernetes-state-pods state))
           (pods (append pods nil)))
     (nreverse (seq-reduce
                (lambda (acc pod)
-                 (if (equal selector-name (kubernetes-state-resource-label pod))
+                 (if (equal name (kubernetes-state-resource-label-value pod 'deploymentconfig))
                      (cons pod acc)
                    acc))
                pods

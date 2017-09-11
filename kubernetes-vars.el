@@ -7,7 +7,7 @@
   :group 'tools
   :prefix "kubernetes-")
 
-(defcustom kubernetes-kubectl-executable "kubectl"
+(defcustom kubernetes-kubectl-executable "oc"
   "The kubectl command used for Kubernetes commands."
   :group 'kubernetes
   :type 'string)

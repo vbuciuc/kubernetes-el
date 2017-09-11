@@ -131,7 +131,7 @@ PROPS is an alist of functions to inject.  It should normally be passed
 STATE is the application state.
 
 CLEANUP-CB is a function taking no arguments used to release any resources."
-  (kubernetes-kubectl props state '("get" "deployments" "-o" "json")
+  (kubernetes-kubectl props state '("get" "deploymentconfigs" "-o" "json")
                       (lambda (buf)
                         (let ((json (with-current-buffer buf
                                       (json-read-from-string (buffer-string)))))
@@ -236,7 +236,7 @@ PROPS is an alist of functions to inject.  It should normally be passed
 STATE is the application state.
 
 CLEANUP-CB is a function taking no arguments used to release any resources."
-  (kubernetes-kubectl props state '("get" "namespaces" "-o" "json")
+  (kubernetes-kubectl props state '("get" "projects" "-o" "json")
                       (lambda (buf)
                         (let ((json (with-current-buffer buf
                                       (json-read-from-string (buffer-string)))))

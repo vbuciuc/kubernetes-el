@@ -483,6 +483,14 @@ pod, secret, configmap, etc."
   (-let [(&alist 'metadata (&alist 'labels (&alist 'name label))) resource]
     label))
 
+(defun kubernetes-state-resource-label-value (resource key)
+  "Get the label of RESOURCE from its metadata.
+
+RESOURCE is the parsed representation an API resource, such a
+pod, secret, configmap, etc."
+  (-let [(&alist 'metadata (&alist 'labels (&alist key value))) resource]
+    value))
+
 (defun kubernetes-state-current-context (state)
   (when-let (config (kubernetes-state-config state))
     (kubernetes-state--lookup-current-context config)))
